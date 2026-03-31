@@ -21,7 +21,7 @@ const Experience = () => {
                 <FiBriefcase size={20} color="white" />
               </div>
               <div className="timeline-content glass hover-lift">
-                <div className="timeline-date">01/2025 – Present</div>
+                <div className="timeline-date">01/2026 – Present</div>
                 <h4 className="timeline-title">Frontend Developer Intern</h4>
                 <h5 className="timeline-subtitle">Thinking Code Technologies Pvt. Ltd. | Kochi, Kerala</h5>
                 <ul className="timeline-details">
@@ -42,7 +42,7 @@ const Experience = () => {
                 <FiBookOpen size={20} color="white" />
               </div>
               <div className="timeline-content glass hover-lift">
-                <div className="timeline-date">08/2022 – Present</div>
+                <div className="timeline-date">2024 – 2026</div>
                 <h4 className="timeline-title">MCA (Master of Computer Applications)</h4>
                 <h5 className="timeline-subtitle">Rajagiri College of Social Sciences, Kalamassery | CGPA: 7.67 (Up to Semester 4)</h5>
                 <p className="timeline-desc">Specialized in advanced software engineering, AI concepts, and full-stack development methodologies.</p>
@@ -54,7 +54,7 @@ const Experience = () => {
                 <FiBookOpen size={20} color="white" />
               </div>
               <div className="timeline-content glass hover-lift">
-                <div className="timeline-date">2019 – 2022</div>
+                <div className="timeline-date">2021 – 2024</div>
                 <h4 className="timeline-title">BCA (Bachelor of Computer Applications)</h4>
                 <h5 className="timeline-subtitle">Calicut University | CGPA: 8.36</h5>
                 <p className="timeline-desc">Foundational studies in programming, database management, and web technologies.</p>
