@@ -1,0 +1,86 @@
+.achievements-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.text-left {
+  text-align: left !important;
+  margin-bottom: 2rem !important;
+}
+
+.flex-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.award-icon {
+  color: var(--accent-color);
+}
+
+.hackathon-block {
+  padding: 3rem;
+  border-radius: 24px;
+  background: var(--card-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.hackathon-block::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+  opacity: 0.1;
+  border-radius: 50%;
+  transform: translate(30%, -30%);
+}
+
+.certs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+}
+
+.cert-icon {
+  color: var(--accent-secondary);
+  flex-shrink: 0;
+}
+
+.cert-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.cert-issuer {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.text-highlight {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+@media (max-width: 992px) {
+  .achievements-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}

@@ -1,0 +1,104 @@
+.timeline-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-heading {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+
+.timeline-item {
+  position: relative;
+  border-left: 2px solid var(--card-border);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0 16px 16px 16px;
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+}
+
+.timeline-item:hover {
+  transform: translateX(10px);
+  border-left-color: var(--accent-color);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -9px;
+  top: 32px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--text-muted);
+  border: 3px solid var(--card-bg);
+  transition: background-color var(--transition-fast);
+}
+
+.timeline-item:hover .timeline-dot {
+  background-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+}
+
+.gradient-bg {
+  background: var(--accent-gradient) !important;
+}
+
+.timeline-date {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.timeline-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.timeline-details {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.timeline-details li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.timeline-details li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.timeline-score {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  .timeline-heading { padding-left: 0; text-align: center; }
+  .timeline-item { padding: 1.5rem; border-left: none; border-top: 2px solid var(--card-border); border-radius: 16px; }
+  .timeline-dot { display: none; }
+  .timeline-item:hover { transform: translateY(-5px); border-top-color: var(--accent-color); }
+}
