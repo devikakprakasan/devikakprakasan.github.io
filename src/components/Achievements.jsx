@@ -1,4 +1,5 @@
 import { FiAward, FiCheckCircle } from 'react-icons/fi';
+import FadeIn from './FadeIn';
 import './Achievements.css';
 
 const Achievements = () => {
@@ -14,10 +15,10 @@ const Achievements = () => {
       <div className="container">
         
         <div className="achievements-container">
-          <div className="hackathon-block glass hide-on-scroll">
+          <FadeIn direction="left" className="hackathon-block glass">
             <div className="flex-header">
               <h2 className="section-title text-left mb-0">Hackfest Achievement</h2>
-              <FiAward className="award-icon gradient-text" size={60} />
+              <FiAward className="award-icon" size={60} />
             </div>
             
             <div className="hackathon-content mt-4">
@@ -29,14 +30,14 @@ const Achievements = () => {
                 actionable insights for teachers.
               </p>
             </div>
-          </div>
+          </FadeIn>
 
-          <div className="certifications-block hide-on-scroll delay-2">
+          <FadeIn direction="right" delay={0.2} className="certifications-block">
             <h2 className="section-title text-left mb-4">Certifications & Workshops</h2>
             
             <div className="certs-list">
               {certifications.map((cert, index) => (
-                <div key={index} className="cert-item glass hover-lift delay-1">
+                <div key={index} className="cert-item glass hover-lift">
                   <FiCheckCircle className="cert-icon" size={24} />
                   <div className="cert-details">
                     <h4 className="cert-title">{cert.title}</h4>
@@ -47,7 +48,7 @@ const Achievements = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </FadeIn>
         </div>
         
       </div>

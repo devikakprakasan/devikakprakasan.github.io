@@ -1,27 +1,41 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import './CustomCursor.css';
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [cursorType, setCursorType] = useState('default');
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth the mouse movement
+  const springConfig = { damping: 25, stiffness: 250, mass: 0.5 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
     };
 
     const checkHover = (e) => {
       const target = e.target;
-      if (
+      const isClickable = 
         target.tagName.toLowerCase() === 'a' ||
         target.tagName.toLowerCase() === 'button' ||
         target.closest('a') ||
-        target.closest('button')
-      ) {
+        target.closest('button') ||
+        target.classList.contains('social-icon') ||
+        target.classList.contains('btn');
+
+      if (isClickable) {
         setIsHovering(true);
+        setCursorType('hover');
       } else {
         setIsHovering(false);
+        setCursorType('default');
       }
     };
 
@@ -32,34 +46,27 @@ const CustomCursor = () => {
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mouseover', checkHover);
     };
-  }, []);
-
-  const variants = {
-    default: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      scale: 1,
-    },
-    hover: {
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      scale: 1.5,
-      backgroundColor: 'rgba(59, 130, 246, 0.1)',
-      border: '1px solid rgba(59, 130, 246, 0.8)',
-    }
-  };
+  }, [mouseX, mouseY]);
 
   return (
     <>
       <motion.div
-        className="cursor-ring"
-        variants={variants}
-        animate={isHovering ? 'hover' : 'default'}
-        transition={{ type: 'spring', stiffness: 500, damping: 28, mass: 0.5 }}
+        className={`cursor-ring ${isHovering ? 'hover' : ''}`}
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
       />
-      <div 
+      <motion.div 
         className="cursor-dot" 
-        style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px` }}
+        style={{ 
+          x: mouseX, 
+          y: mouseY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
       />
     </>
   );

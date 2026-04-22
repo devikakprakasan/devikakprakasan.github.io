@@ -1,4 +1,5 @@
-import { FiGithub, FiLinkedin, FiMail, FiArrowRight } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FiGithub, FiLinkedin, FiMail, FiArrowRight, FiDownload } from 'react-icons/fi';
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaDatabase } from 'react-icons/fa';
 import { SiJavascript, SiTailwindcss } from 'react-icons/si';
 import ParticleBackground from './ParticleBackground';
@@ -6,90 +7,87 @@ import { TypeAnimation } from 'react-type-animation';
 import './Hero.css';
 
 const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+
   return (
     <section id="hero" className="hero-section">
       <ParticleBackground />
-      <div className="container hero-container" style={{ zIndex: 10 }}>
-        <div className="hero-content hide-on-scroll">
-          <p className="hero-greeting">Hello, I'm</p>
-          <h1 className="hero-name">Devika K P</h1>
-          <h2 className="hero-role">
+      <div className="hero-container">
+        <motion.div 
+          className="hero-image-container"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <img src="/devika.jpg" alt="Devika K P" className="hero-portrait" />
+        </motion.div>
+
+        <motion.div 
+          className="hero-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className="hero-badge" variants={itemVariants}>
+            <span className="badge-dot"></span> Available for projects
+          </motion.div>
+          
+          <motion.p className="hero-greeting" variants={itemVariants}>Hi, I'm</motion.p>
+          <motion.h1 className="hero-name" variants={itemVariants}>Devika K P<span>.</span></motion.h1>
+          
+          <motion.h2 className="hero-role" variants={itemVariants}>
             <TypeAnimation
               sequence={[
                 'Frontend Developer',
                 2000,
-                'MCA Student',
+                'MCA Graduate',
                 2000,
                 'UI/UX Enthusiast',
                 2000,
               ]}
               wrapper="span"
               speed={50}
-              className="gradient-text"
+              className="accent-text"
               repeat={Infinity}
             />
-          </h2>
-          <p className="hero-description">
-            Motivated software developer from Thrissur, Kerala. I focus on building clear, user-friendly
-            solutions and dynamic web interfaces. Committed to steady growth, reliable results, and modern design aesthetics.
-          </p>
-          
-          <div className="hero-cta-group">
-            <a href="#projects" className="btn btn-primary">
-              View My Work <FiArrowRight className="btn-icon" />
-            </a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=devikaprakasan123@gmail.com" target="_blank" rel="noreferrer" className="btn btn-secondary glass">
-              Contact Me
-            </a>
-          </div>
+          </motion.h2>
 
-          <div className="hero-socials">
+          <motion.p className="hero-description" variants={itemVariants}>
+            Building seamless digital experiences with a focus on clean code and modern design. 
+            Based in Thrissur, Kerala.
+          </motion.p>
+          
+          <motion.div className="hero-cta-group" variants={itemVariants}>
+            <a href="#projects" className="btn btn-primary">
+              My Works
+            </a>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              Resume <FiDownload />
+            </a>
+          </motion.div>
+
+          <motion.div className="hero-socials" variants={itemVariants}>
             <a href="https://github.com/devikakprakasan" target="_blank" rel="noreferrer" className="social-icon">
-              <FiGithub size={22} />
+              <FiGithub />
             </a>
             <a href="https://www.linkedin.com/in/devikakp" target="_blank" rel="noreferrer" className="social-icon">
-              <FiLinkedin size={22} />
+              <FiLinkedin />
             </a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=devikaprakasan123@gmail.com" target="_blank" rel="noreferrer" className="social-icon">
-              <FiMail size={22} />
-            </a>
-          </div>
-        </div>
-        
-        <div className="hero-visual hide-on-scroll delay-1">
-          <div className="tech-orbit">
-            <div className="center-icon glass">
-              <FaReact size={50} color="#61DAFB" />
-            </div>
-            
-            <div className="orbit-path path-1">
-              <div className="orbit-icon-wrapper" style={{ animationDelay: '0s' }}>
-                <SiJavascript size={24} color="#F7DF1E" className="orbit-icon" />
-              </div>
-              <div className="orbit-icon-wrapper" style={{ animationDelay: '-5s' }}>
-                <FaHtml5 size={24} color="#E34F26" className="orbit-icon" />
-              </div>
-            </div>
-
-            <div className="orbit-path path-2">
-              <div className="orbit-icon-wrapper" style={{ animationDelay: '-2s' }}>
-                <FaCss3Alt size={24} color="#1572B6" className="orbit-icon" />
-              </div>
-              <div className="orbit-icon-wrapper" style={{ animationDelay: '-7s' }}>
-                <SiTailwindcss size={24} color="#06B6D4" className="orbit-icon" />
-              </div>
-            </div>
-
-            <div className="orbit-path path-3">
-              <div className="orbit-icon-wrapper" style={{ animationDelay: '-4s' }}>
-                <FaNodeJs size={24} color="#339933" className="orbit-icon" />
-              </div>
-              <div className="orbit-icon-wrapper" style={{ animationDelay: '-9s' }}>
-                <FaDatabase size={24} color="#4DB33D" className="orbit-icon" />
-              </div>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,81 +1,66 @@
 .achievements-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: flex-start;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: start;
 }
 
-.text-left {
-  text-align: left !important;
-  margin-bottom: 2rem !important;
+.hackathon-block {
+  padding: 4rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-.flex-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+.hackathon-block:hover {
+  border-color: var(--accent-color);
+  background: rgba(0, 210, 255, 0.05);
 }
 
 .award-icon {
   color: var(--accent-color);
-}
-
-.hackathon-block {
-  padding: 3rem;
-  border-radius: 24px;
-  background: var(--card-bg);
-  position: relative;
-  overflow: hidden;
-}
-
-.hackathon-block::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
-  opacity: 0.1;
-  border-radius: 50%;
-  transform: translate(30%, -30%);
+  filter: drop-shadow(0 0 10px var(--accent-color));
 }
 
 .certs-list {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .cert-item {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 16px;
-  border: 1px solid var(--card-border);
+  padding: 2rem;
   background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.cert-item:hover {
+  border-color: var(--accent-color);
+  transform: translateX(10px);
 }
 
 .cert-icon {
-  color: var(--accent-secondary);
-  flex-shrink: 0;
+  color: var(--accent-color);
 }
 
 .cert-title {
   font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .cert-issuer {
-  color: var(--text-muted);
   font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 .text-highlight {
-  color: var(--text-main);
-  font-weight: 500;
+  color: var(--accent-color);
 }
 
 @media (max-width: 992px) {

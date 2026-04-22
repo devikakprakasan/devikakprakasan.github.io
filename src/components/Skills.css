@@ -1,50 +1,61 @@
-.skills-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
-.skill-card {
-  flex: 1 1 300px;
-  max-width: 400px;
-  padding: 2.5rem;
-  border-radius: 20px;
-  text-align: left;
-}
-
-.skill-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-.skill-tags {
+.skill-box {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
-.skill-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.6rem 1.25rem;
-  border-radius: 50px;
-  font-size: 0.95rem;
+.skill-box:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-10px);
+  background: rgba(0, 210, 255, 0.05);
+}
+
+.skill-icon-wrapper {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.skill-box:hover .skill-icon-wrapper {
+  color: var(--accent-color);
+}
+
+.skill-box:hover .skill-icon-wrapper svg {
+  filter: drop-shadow(0 0 10px var(--accent-color));
+}
+
+.skill-name {
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-main);
-  transition: all var(--transition-fast);
+  letter-spacing: 1px;
 }
 
-.skill-card:hover .skill-tag {
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.skill-tag:hover {
-  background: var(--accent-gradient) !important;
-  border-color: transparent !important;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+  
+  .skill-box {
+    padding: 2rem 1rem;
+  }
+  
+  .skill-icon-wrapper {
+    font-size: 2.5rem;
+  }
 }

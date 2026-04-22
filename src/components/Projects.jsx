@@ -1,7 +1,68 @@
-import React from 'react';
-import { FiGithub, FiExternalLink, FiFolder } from 'react-icons/fi';
+import { useRef } from 'react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { FiGithub, FiExternalLink } from 'react-icons/fi';
 import FadeIn from './FadeIn';
 import './Projects.css';
+
+const ProjectCard = ({ project, index }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <FadeIn 
+      direction="up" 
+      delay={0.1 * ((index % 4) + 1)}
+      className="project-card-wrapper"
+    >
+      <div className="project-card-inner">
+        <div className="project-image-box">
+          <img src={project.image} alt={project.title} className="project-img" />
+          <div className="project-overlay">
+            <div className="project-links">
+              <a href={project.links.github} target="_blank" rel="noreferrer" className="p-link"><FiGithub /></a>
+              <a href={project.links.live} className="p-link"><FiExternalLink /></a>
+            </div>
+          </div>
+        </div>
+        
+        <div className="project-info">
+          <span className="p-tag">{project.tags}</span>
+          <h3 className="p-title">{project.title}</h3>
+          <p className="p-desc">{project.description}</p>
+          
+          <div className="p-tech-stack">
+            {project.tech.map((tech, i) => (
+              <span key={i} className="p-tech">{tech}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </FadeIn>
+  );
+};
 
 const Projects = () => {
   const projects = [
@@ -69,51 +130,7 @@ const Projects = () => {
         
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <FadeIn 
-              key={index} 
-              direction="up" 
-              delay={0.1 * ((index % 4) + 1)}
-              className={`project-card glass ${index === 3 ? 'centered-last' : ''}`}
-            >
-              <div 
-                style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.parentElement.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  e.currentTarget.parentElement.style.setProperty('--mouse-x', `${x}px`);
-                  e.currentTarget.parentElement.style.setProperty('--mouse-y', `${y}px`);
-                }}
-              >
-                <div className="project-image-wrapper">
-                  <img src={project.image} alt={project.title} className="project-image" />
-                </div>
-                <div className="project-content-layer">
-                  <div className="project-top">
-                    <span className="project-tag gradient-text">{project.tags}</span>
-                    <div className="project-links">
-                      <a href={project.links.github} target="_blank" rel="noreferrer" className="project-link" aria-label="Github Repo"><FiGithub size={20} /></a>
-                      <a href={project.links.live} className="project-link" aria-label="Live Demo"><FiExternalLink size={20} /></a>
-                    </div>
-                  </div>
-                  
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-desc">{project.description}</p>
-                  
-                  <ul className="project-highlights">
-                    {project.highlights.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                  
-                  <div className="project-tech">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="tech-item">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
+            <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
       </div>
