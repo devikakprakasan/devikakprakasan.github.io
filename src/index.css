@@ -63,6 +63,10 @@ a {
   transition: color var(--transition-fast);
 }
 
+p {
+  text-align: justify;
+}
+
 button {
   font-family: var(--font-family);
   cursor: pointer;
